@@ -1,0 +1,33 @@
+.section {
+    margin: 1.5rem 0;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+.sectionCenter {
+    text-align: center;
+}
+
+.sectionHeader {
+    background: white;
+    width: fit-content;
+    margin-bottom: -1rem;
+    transform: translateY(-1.25rem);
+    padding: 0 5px;
+    margin-left: 5px;
+}
+
+.propertyDetails {
+    padding-left: 2rem;
+}
+
+input[type=number] {
+    width: 45px;
+    padding-left: 5px;
+    font-size: .75rem;
+}
+
+#btnResolveAttack {
+    border-radius: 5px;
+}
