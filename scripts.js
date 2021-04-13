@@ -1,5 +1,7 @@
 let attackRoll;
 let defense;
+let effectDC;
+let resistanceRoll;
 let resistanceFailure;
 let resultsTextBox = document.getElementById("results");
 let resultsText;
@@ -33,7 +35,8 @@ function resolveAttack() {
         resultsText = "Attack Hits.";
     }
 
-    resolveResilient();
+    resistanceFailure = getResistanceDegrees();
+
     calculateBruises();
 
     resolveHampering();
@@ -44,9 +47,10 @@ function resolveAttack() {
 }
 
 function getInputs() {
-    attackRoll = parseInt(document.getElementById("attackroll").value);
+    attackRoll = parseInt(document.getElementById("attackRoll").value);
     defense = parseInt(document.getElementById("defense").value);
-    resistanceFailure = parseInt(document.getElementById("resistanceFailure").value);
+    effectDC = parseInt(document.getElementById("effectDC").value);
+    resistanceRoll = parseInt(document.getElementById("resistanceRoll").value);
 
     isBattering = document.getElementById("battering").checked;
     batteringRank = parseInt(document.getElementById("batteringRank").value);
@@ -65,15 +69,15 @@ function getInputs() {
 function getAttackDegrees() {
     return Math.ceil((attackRoll - defense + 1) / 5);
 }
+function getResistanceDegrees() {
+    resolveResilient();
+    return Math.ceil((effectDC - resistanceRoll) / 5);
+}
 function calculateBruises() {
-    if (resistanceFailure == 0) {
-        bruises = 1;
-    } else if (resistanceFailure == 1) {
-        bruises = 1;
-    } else if (resistanceFailure == 2) {
-        bruises = 1;
-    } else if (resistanceFailure >= 3) {
-        bruises = 1;
+    bruises = 1;
+
+    if (resistanceFailure <= 0) {
+        resultsText += " Resisted.";
     }
 
     resolveBattering();
@@ -81,13 +85,13 @@ function calculateBruises() {
     resolveStalwart();
 
     if (resistanceFailure == 0) {
-        resultsText += ` ${reportBruises()}`
+        resultsText += ` ${reportBruises()}`;
     } else if (resistanceFailure == 1) {
-        resultsText += ` ${reportBruises()} Dazed.`
+        resultsText += ` ${reportBruises()} Dazed.`;
     } else if (resistanceFailure == 2) {
-        resultsText += ` ${reportBruises()} Staggered`
+        resultsText += ` ${reportBruises()} Staggered`;
     } else if (resistanceFailure >= 3) {
-        resultsText += ` ${reportBruises()} Incapacitated`
+        resultsText += ` ${reportBruises()} Incapacitated`;
     }
 }
 function resolveBattering() {
@@ -122,10 +126,9 @@ function resolveResilient() {
     if (isResilient) {
         if (attackDegrees == 1) {
             if (resilientRank == 1) {
-                resistanceFailure -= 1;
+                resistanceRoll += 5;
             } else if (resilientRank == 2) {
-                resistanceFailure -= 1;
-                //This is incomplete. Needs to apply bonus for non-tradeoff attack bonuses. Revisit when resistance roll is collected.
+                resistanceRoll += (5 + (Math.floor(nonTradeoffAttackBonus / 2)));
             }
         }
     }
