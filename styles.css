@@ -18,6 +18,10 @@ body {
     font-family: 'Antic', sans-serif;
 }
 
+.sectionCenter {
+    text-align: center;
+}
+
 .sectionHeader {
     background: white;
     width: fit-content;
