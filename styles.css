@@ -1,12 +1,21 @@
+body {
+    background-color: #c2f2ff;
+}
+
+.title {
+    font-family: 'Roboto', sans-serif;
+    margin: 15px;
+    text-align: center;
+}
+
 .section {
     margin: 1.5rem 0;
     border: 1px solid black;
     border-radius: 10px;
     padding: 5px 10px;
-}
-
-.sectionCenter {
-    text-align: center;
+    min-height: 5rem;
+    background: white;
+    font-family: 'Antic', sans-serif;
 }
 
 .sectionHeader {
@@ -16,6 +25,8 @@
     transform: translateY(-1.25rem);
     padding: 0 5px;
     margin-left: 5px;
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
 }
 
 .propertyDetails {
