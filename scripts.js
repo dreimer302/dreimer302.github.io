@@ -23,6 +23,20 @@ let isStalwart;
 let stalwartRank;
 let isSteady;
 
+const attackForm = document.querySelector("#attackForm")
+attackForm.addEventListener('submit', (e) => e.preventDefault())
+document.querySelector("#btnResolveAttack").addEventListener('click', resolveAttack)
+
+for (const checkbox of document.querySelectorAll('input[type=checkbox]')) {
+    checkbox.addEventListener('change', function () {
+        const targetId = `.${this.getAttribute("id")}Details`
+        if (document.querySelector(targetId)) {
+            const targetId = `.${this.getAttribute("id")}Details`
+            document.querySelector(targetId).classList.toggle('hidden');
+        }
+    })
+}
+
 function resolveAttack() {
     getInputs();
     attackDegrees = getAttackDegrees();
@@ -47,24 +61,25 @@ function resolveAttack() {
 }
 
 function getInputs() {
-    attackRoll = parseInt(document.getElementById("attackRoll").value);
-    defense = parseInt(document.getElementById("defense").value);
-    effectDC = parseInt(document.getElementById("effectDC").value);
-    resistanceRoll = parseInt(document.getElementById("resistanceRoll").value);
 
-    isBattering = document.getElementById("battering").checked;
-    batteringRank = parseInt(document.getElementById("batteringRank").value);
-    isBrutal = document.getElementById("brutal").checked;
-    brutalRank = parseInt(document.getElementById("brutalRank").value);
-    isHampering = document.getElementById("hampering").checked;
+    attackRoll = parseInt(attackForm.elements.attackRoll.value)
+    defense = parseInt(attackForm.elements.defense.value)
+    effectDC = parseInt(attackForm.elements.effectDC.value)
+    resistanceRoll = parseInt(attackForm.elements.resistanceRoll.value)
 
-    isIndomitable = document.getElementById("indomitable").checked;
-    isResilient = document.getElementById("resilient").checked;
-    resilientRank = parseInt(document.getElementById("resilientRank").value);
-    nonTradeoffAttackBonus = parseInt(document.getElementById("nonTradeoffAttackBonus").value);
-    isStalwart = document.getElementById("stalwart").checked;
-    stalwartRank = parseInt(document.getElementById("stalwartRank").value);
-    isSteady = document.getElementById("steady").checked;
+    isBattering = attackForm.elements.battering.checked
+    batteringRank = parseInt(attackForm.elements.batteringRank.value)
+    isBrutal = attackForm.elements.brutal.checked
+    brutalRank = parseInt(attackForm.elements.brutalRank.value)
+    isHampering = attackForm.elements.hampering.checked
+
+    isIndomitable = attackForm.elements.indomitable.checked
+    isResilient = attackForm.elements.resilient.checked
+    resilientRank = parseInt(attackForm.elements.resilientRank.value)
+    nonTradeoffAttackBonus = parseInt(attackForm.elements.nonTradeoffAttackBonus.value)
+    isStalwart = attackForm.elements.stalwart.checked
+    stalwartRank = parseInt(attackForm.elements.stalwartRank.value)
+    isSteady = attackForm.elements.steady.checked
 }
 function getAttackDegrees() {
     return Math.ceil((attackRoll - defense + 1) / 5);
@@ -155,16 +170,6 @@ function resolveSteady() {
         resultsText += " Resistance check delayed until next turn due to Steady.";
     }
 }
-
-// $("#resilient");
-// $("#resilient").change(function () {
-//     console.log("1");
-//     if (this.checked) {
-//         console.log("2");
-//     }
-// });
-
-
 function reportResults() {
     resultsTextBox.textContent = resultsText;
 }

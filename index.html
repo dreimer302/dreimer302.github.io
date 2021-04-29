@@ -12,53 +12,55 @@
 <body>
     <div class="container">
         <h1 class="title">QDE 4.0 Attack Calculator</h1>
-        <div class="section">
-            <h4 class="sectionHeader">Attack Roll</h4>
-            Attack Roll: <input type="number" id="attackRoll" name="attackRoll" value="20" min="0" max="100"><br>
-            Defense: <input type="number" id="defense" name="defense" value="20" min="0" max="100"><br>
-            Effect DC: <input type="number" id="effectDC" name="effectDC" value="20" min="10" max="100"><br>
-            Resistance Roll: <input type="number" id="resistanceRoll" name="resistanceRoll" value="20" min="0"
-                max="100">
-        </div>
-        <div class="section">
-            <h4 class="sectionHeader">Attacker Qualities</h4>
-            <input type="checkbox" id="battering" name="battering" value="battering">
-            <label for="battering">Battering</label>
-            <div class="propertyDetails">
-                Rank: <input type="number" id="batteringRank" name="batteringRank" value="1" min="0" max="100">
+        <form action="" id="attackForm">
+            <div id="rollInputs" class="section">
+                <h4 class="sectionHeader">Attack Roll</h4>
+                Attack Roll: <input type="number" id="attackRoll" name="attackRoll" value="20" min="0" max="100"><br>
+                Defense: <input type="number" id="defense" name="defense" value="20" min="0" max="100"><br>
+                Effect DC: <input type="number" id="effectDC" name="effectDC" value="20" min="10" max="100"><br>
+                Resistance Roll: <input type="number" id="resistanceRoll" name="resistanceRoll" value="20" min="0"
+                    max="100">
             </div>
-            <input type="checkbox" id="brutal" name="brutal" value="brutal">
-            <label for="brutal">Brutal</label>
-            <div class="propertyDetails">
-                Rank: <input type="number" id="brutalRank" name="brutalRank" value="1" min="0" max="2">
+            <div id="attackInputs" class="section">
+                <h4 class="sectionHeader">Attacker Qualities</h4>
+                <input type="checkbox" id="battering" name="battering" value="battering">
+                <label for="battering">Battering</label><br>
+                <div class="propertyDetails batteringDetails hidden">
+                    Rank: <input type="number" id="batteringRank" name="batteringRank" value="1" min="0" max="100">
+                </div>
+                <input type="checkbox" id="brutal" name="brutal" value="brutal">
+                <label for="brutal">Brutal</label><br>
+                <div class="propertyDetails brutalDetails hidden">
+                    Rank: <input type="number" id="brutalRank" name="brutalRank" value="1" min="0" max="2">
+                </div>
+                <input type="checkbox" id="hampering" name="hampering" value="hampering">
+                <label for="hampering">Hampering</label><br>
             </div>
-            <input type="checkbox" id="hampering" name="hampering" value="hampering">
-            <label for="hampering">Hampering</label><br>
-        </div>
-        <div class="section">
-            <h4 class="sectionHeader">Defender Qualities</h4>
-            <!-- <input type="checkbox" id="absorbtive" name="absorbtive" value="absorbtive">
+            <div id="defenseInputs" class="section">
+                <h4 class="sectionHeader">Defender Qualities</h4>
+                <!-- <input type="checkbox" id="absorbtive" name="absorbtive" value="absorbtive">
             <label for="absorbtive">Absorbtive</label><br> -->
-            <input type="checkbox" id="indomitable" name="indomitable" value="indomitable">
-            <label for="indomitable">Indomitable</label><br>
-            <input type="checkbox" id="resilient" name="resilient" value="resilient">
-            <label for="resilient">Resilient</label>
-            <div class="propertyDetails">
-                Rank: <input type="number" id="resilientRank" name="resilientRank" value="1" min="0" max="2"><br>
-                Non-tradeoff attack bonus: <input type="number" id="nonTradeoffAttackBonus"
-                    name="nonTradeoffAttackBonus" value="0" min="0" max="100">
+                <input type="checkbox" id="indomitable" name="indomitable" value="indomitable">
+                <label for="indomitable">Indomitable</label><br>
+                <input type="checkbox" id="resilient" name="resilient" value="resilient">
+                <label for="resilient">Resilient</label><br>
+                <div class="propertyDetails resilientDetails hidden">
+                    Rank: <input type="number" id="resilientRank" name="resilientRank" value="1" min="0" max="2"><br>
+                    Non-tradeoff attack bonus: <input type="number" id="nonTradeoffAttackBonus"
+                        name="nonTradeoffAttackBonus" value="0" min="0" max="100">
+                </div>
+                <input type="checkbox" id="stalwart" name="stalwart" value="stalwart">
+                <label for="stalwart">Stalwart</label><br>
+                <div class="propertyDetails stalwartDetails hidden">
+                    Rank: <input type="number" id="stalwartRank" name="stalwartRank" value="1" min="0" max="2">
+                </div>
+                <input type="checkbox" id="steady" name="steady" value="steady">
+                <label for="steady">Steady</label><br>
             </div>
-            <input type="checkbox" id="stalwart" name="stalwart" value="stalwart">
-            <label for="stalwart">Stalwart</label>
-            <div class="propertyDetails">
-                Rank: <input type="number" id="stalwartRank" name="stalwartRank" value="1" min="0" max="2">
+            <div class="sectionCenter">
+                <button id="btnResolveAttack">Resolve Attack</button>
             </div>
-            <input type="checkbox" id="steady" name="steady" value="steady">
-            <label for="steady">Steady</label><br>
-        </div>
-        <div class="sectionCenter">
-            <button id="btnResolveAttack" onclick="resolveAttack()">Resolve Attack</button>
-        </div>
+        </form>
         <div class="section">
             <h4 class="sectionHeader">Results</h4>
             <p id="results"></p>
